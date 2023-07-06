@@ -6,7 +6,8 @@
         "start": "tsc --watch",
         "sass": "sass scss/forms.scss:dist/base.css",
         "examples:fromOptions": "npm run sass && esbuild examples/fromOptions.ts --bundle --outfile=examples/fromOptions.js",
-        "build": "npm run sass && npm run compile"
+        "build": "npm run sass && npm run compile",
+        "docs": "typedoc src/**/*.ts"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -14,6 +15,7 @@
         "esbuild": "^0.18.11",
         "eslint": "^7.22.0",
         "sass": "^1.63.6",
+        "typedoc": "^0.24.8",
         "typescript": "^4.9.5"
     }
 }
