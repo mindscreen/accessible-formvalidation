@@ -1,4 +1,4 @@
-# Mindscreen Form Validation
+# Mindscreen Accessible Form Validation
 
 This package implements an accessible form validation.
 
