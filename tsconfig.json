@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "lib": ["DOM", "ES2017"],
+        "target": "ES2017",
+        "outDir": "dist",
+        "moduleResolution": "Node",
+        "declaration": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
