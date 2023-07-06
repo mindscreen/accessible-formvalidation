@@ -350,10 +350,14 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
     private insertErrorNode(error: IErrorInfo, node: HTMLElement) {
         const validationPlacement = error.inputGroup
             .getAttribute(this.options.selectors.validationPlacementAttribute);
+        const liveRegion = document.createElement('div');
+        liveRegion.setAttribute('aria-live', 'assertive');
         if (error.inputElement?.type === 'radio' && validationPlacement) {
-            return insertPositional(error.inputGroup, node, validationPlacement);
+            insertPositional(error.inputGroup, liveRegion, validationPlacement);
+        } else {
+            insertPositional(error.inputGroup, liveRegion, 'before .form-text, in this');
         }
-        insertPositional(error.inputGroup, node, 'before .form-text, in this');
+        liveRegion.append(node);
     }
 
     /**
@@ -435,11 +439,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         const errorNode = this.options.onRenderErrorNode(error, this.insertErrorNode, this.options, true);
         if (errorNode) {
             errorNode.classList.add(this.options.classNames.errorDescription);
-            errorNode.setAttribute('aria-live', 'assertive');
-            // message is only read, if live-region changes, i.e. element must already exist, it seems
-            window.setTimeout(() => {
-                errorNode.innerText = message;
-            }, 10);
+            errorNode.innerText = message;
         }
         input.setAttribute('aria-invalid', 'true');
         input.setAttribute('aria-describedby', this.getErrorNodeIds(error.inputGroup));
@@ -451,6 +451,9 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         this.setErrorHandle(input, error.validatorType, null);
         const errorNode = this.options.onRenderErrorNode(error, this.insertErrorNode, this.options, false);
         if (errorNode) {
+            if (errorNode.parentElement.getAttribute('aria-live') === 'assertive') {
+                errorNode.parentElement.remove();
+            }
             errorNode.remove();
         }
         const errorNodeIds = this.getErrorNodeIds(error.inputGroup);
