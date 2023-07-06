@@ -1,0 +1,125 @@
+@use "sass:math";
+@import "variables";
+@import "mixins";
+
+
+// -------------------------------------------------
+// Error-Listing above form
+
+.form-error-container {
+    .form-errors {
+        display: none;
+        &--form-submitted {
+            display: block;
+        }
+    }
+}
+
+.form-errors--form-submitted {
+    padding: $error-listing-base-spacing;
+    border: $error-listing-border;
+    margin-bottom: ($error-listing-base-spacing * 2);
+
+    @media screen and (min-width: 768px) {
+        padding: ($error-listing-base-spacing * 2);
+    }
+
+    .copy-list {
+        list-style: initial;
+        margin-left: $error-listing-base-spacing;
+    }
+
+    .error-list__item {
+        margin-bottom: math.div($error-listing-base-spacing, 2);
+
+        a,
+        a:visited {
+            margin: 0 -2px;
+            padding: 0 2px;
+            color: $error-listing-color-link-default;
+            font-family: $error-listing-link-font-family;
+            font-weight: inherit;
+            font-size: $error-listing-link-font-size;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus,
+            &:active {
+                box-shadow: 0 0 0 2px $error-listing-color-focus-outline;
+            }
+        }
+
+        &--done {
+            text-decoration: line-through;
+        }
+    }
+}
+
+// -------------------------------------------------
+// Container around form fields
+
+.form-element__container {
+    &--error {
+        border-left: 5px solid $color-error;
+        padding: $error-container-padding;
+    }
+}
+
+// -------------------------------------------------
+// Text parts
+
+.form-element__label {
+    &--error {
+        color: $color-error;
+    }
+}
+
+
+// -------------------------------------------------
+// Error on form fields
+.form-element__error-message {
+    display: inline-block;
+    margin-top: .5rem;
+    @include description-text;
+    color: $color-error;
+}
+
+.form-element__validation-icon {
+    display: none;
+    // relative to .form-element
+    position: absolute;
+    top: 50%;
+    right: -$error-container-spacing;
+    transform: translateY(-50%);
+
+
+
+    &::after {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $error-validation-size;
+        height: $error-validation-size;
+        padding-top: $error-validation-font-adjuster;
+        border-radius: 50%;
+        color: $error-validation-color;
+        font-weight: $error-validation-font-weight;
+    }
+
+    &--error::after {
+        content: $error-validation-content-error;
+        background-color: $error-validation-bg-color-error;
+        font-size: $error-validation-font-size-error;
+    }
+    &--success::after {
+        content: $error-validation-content-success;
+        background-color: $error-validation-bg-color-success;
+        font-size: $error-validation-font-size-success;
+    }
+}
+
+.form-element__container--error {
+    .form-element__validation-icon {
+        display: block;
+    }
+}

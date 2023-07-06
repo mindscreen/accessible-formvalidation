@@ -1,0 +1,198 @@
+@import "variables";
+@import "mixins";
+
+// -------------------------------------------------
+// Container
+
+.form-element__container {
+    margin: $container-spacing;
+}
+
+// -------------------------------------------------
+// Text parts
+
+.form-element__label {
+    @include label-text;
+    display: inline-block;
+    margin: $label-margin;
+
+    &--disabled {
+        color: $label-color-disabled;
+    }
+    &--checkbox,
+    &--radio {
+        font-weight: $label-font-weight-regular;
+    }
+}
+
+.form-element__description {
+    @include description-text;
+    margin: $description-margin;
+    color: $description-color;
+}
+
+// -------------------------------------------------
+// Form fields themselves
+
+.form-element {
+    position: relative;
+    input:not([type]),
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="email"],
+    input[type="date"],
+    input[type="file"],
+    textarea,
+    select {
+        font-size: $input-font-size;
+        font-family: $input-font-family;
+        transition: border linear 0.2s, box-shadow linear 0.2s;
+        padding: $input-padding;
+        width: 100%;
+        border: $input-border;
+        background: $input-background;
+        border-radius: $input-border-radius;
+        color: $input-color;
+        &:hover {
+            box-shadow: $input-hover-shadow;
+        }
+        &:focus {
+            outline: none;
+            box-shadow: $input-focus-shadow;
+        }
+    }
+    textarea {
+        resize: vertical;
+    }
+    &--radio {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    input[type=checkbox],
+    input[type=radio] {
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: $checkable-input-size;
+        height: $checkable-input-size;
+        margin: 0;
+        opacity: 0;
+
+        & + label {
+            display: inline-block;
+            margin-bottom: 0;
+            padding: $checkable-padding;
+            cursor: pointer;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+        & + label:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $checkable-input-size;
+            height: $checkable-input-size;
+            border: $checkbox-border;
+            background: $checkbox-background;
+        }
+        &:hover {
+            &:not(:disabled) + label:before {
+                box-shadow: $input-hover-shadow;
+            }
+        }
+        &:focus {
+            &:not(:disabled) + label:before {
+                box-shadow: $input-focus-shadow;
+            }
+        }
+        &:disabled {
+            & + label {
+                text-decoration: line-through;
+            }
+            & + label:before {
+                background-color: $checkbox-background-disabled;
+            }
+        }
+    }
+    // Custom checkbox styles
+    input[type=checkbox] {
+        & + label:after {
+            content: '';
+            opacity: 0;
+            position: absolute;
+            top: 9px;
+            left: 8px;
+            display: block;
+            width: 18px;
+            height: 11px;
+            border: solid 4px currentColor;
+            border-width: 0 0 4px 4px;
+            transform: rotate(-45deg);
+        }
+        &:checked + label:after {
+            opacity: 1;
+        }
+
+    }
+
+    // Custom radio input styles
+    input[type=radio] {
+        & + label:before {
+            border-radius: 50%;
+        }
+        & + label:after {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            width: 0;
+            height: 0;
+            border: 8px solid currentColor;
+            border-radius: 50%;
+            opacity: 0;
+            background: currentColor;
+        }
+        &:checked + label:after {
+            opacity: 1;
+        }
+    }
+}
+
+.checkbox-list {
+    &__item {
+        margin: $checkbox-listitem-spacing;
+        position: relative;
+    }
+}
+
+.file-upload__preview-title,
+.file-upload__preview-file,
+.file-upload__discard {
+    font-size: $input-font-size;
+    font-family: $input-font-family;
+}
+
+.file-upload__preview-file-wrapper {
+    margin: $file-upload-preview-wrapper-margin;
+}
+
+.file-upload__discard {
+    margin: $file-upload-discard-button-margin;
+}
+
+// -------------------------------------------------
+// Fieldset
+
+.form-element__fieldset {
+    border: none;
+}
+
+.form-element__legend {
+    margin-bottom: .5rem;
+    @include label-text;
+}

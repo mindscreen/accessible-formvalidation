@@ -1,0 +1,77 @@
+$font-family: sans-serif !default;
+$font-size: 1rem !default;
+$line-height: 1.5 !default;
+
+$color-error: #A6192E !default;
+$color-success: #097b32 !default;
+$color-highlight: #1e69b4 !default;
+$color-border: #111 !default;
+
+$container-spacing: 0 0 2rem !default;
+
+$label-font-family: $font-family !default;
+$label-color: #111 !default;
+$label-color-focus: $label-color !default;
+$label-color-error: $color-error !default;
+$label-color-disabled: #555 !default;
+$label-font-size: $font-size * 1.2 !default;
+$label-line-height: $line-height !default;
+$label-font-weight-bold: 700 !default;
+$label-font-weight-regular: 400 !default;
+$label-margin: 0 0 .5rem !default;
+
+$description-font-family: $font-family !default;
+$description-color: #333 !default;
+$description-font-size: $font-size !default;
+$description-line-height: $line-height !default;
+$description-margin: .5rem 0 0 !default;
+
+$input-color: #222 !default;
+$input-font-family: $font-family !default;
+$input-font-size: $font-size * 1.125 !default;
+$input-background: #fff !default;
+$input-border: solid 2px $color-border !default;
+$input-border-radius: 0 !default;
+$input-padding: .3rem .5rem !default;
+$input-hover-shadow: 0 0 0 4px $color-highlight !default;
+$input-focus-shadow:
+    inset
+    0 0 0 2px $color-border,
+    0 0 0 4px $color-highlight !default;
+
+$checkable-input-size: 34px !default;
+$checkable-padding: 0rem 1rem 0rem 2.6rem !default;
+
+$checkbox-border: 2px solid $color-border !default;
+$checkbox-color-checkmark: $color-highlight !default;
+$checkbox-background: $input-background !default;
+$checkbox-background-disabled: #eee !default;
+$checkbox-listitem-spacing: 0 0 .5rem !default;
+
+$file-upload-preview-wrapper-margin: 0 0 1rem !default;
+$file-upload-discard-button-margin: 0 0 0 .5rem !default;
+
+$error-listing-base-spacing: 1rem !default;
+$error-listing-border: 4px solid $color-border !default;
+$error-listing-link-font-family: $font-family !default;
+$error-listing-link-font-size: $font-size !default;
+$error-listing-color-link-default: $color-highlight !default;
+$error-listing-color-focus-outline: $color-highlight !default;
+$error-container-spacing: 2.5rem !default;
+$error-container-padding: .5rem $error-container-spacing .5rem 1.5rem !default;
+$error-validation-content-error: '\0021' !default;
+$error-validation-content-success: '\2714' !default;
+$error-validation-bg-color-error: $color-error !default;
+$error-validation-bg-color-success: $color-success !default;
+$error-validation-color: #fff !default;
+$error-validation-size: 28px !default;
+$error-validation-font-size-error: 1.8rem !default;
+$error-validation-font-size-success: 1.1rem !default;
+$error-validation-font-weight: bold !default;
+$error-validation-font-adjuster: 2px !default;
+
+$static-content-width: 58rem !default;
+$static-content-margin: 2rem auto !default;
+$static-content-padding-mobile: 2rem 1rem 0.5rem !default;
+$static-content-padding-desktop: 2rem 4rem !default;
+$static-content-background: #eee !default;

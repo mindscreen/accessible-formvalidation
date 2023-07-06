@@ -1,0 +1,12 @@
+@import "variables";
+
+.static-content {
+    max-width: $static-content-width;
+    margin: $static-content-margin;
+    padding: $static-content-padding-mobile;
+    background-color: $static-content-background;
+
+    @media screen and (min-width: 768px) {
+        padding: $static-content-padding-desktop;
+    }
+}
