@@ -351,7 +351,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         const validationPlacement = error.inputGroup
             .getAttribute(this.options.selectors.validationPlacementAttribute);
         const liveRegion = document.createElement('div');
-        liveRegion.setAttribute('aria-live', 'assertive');
+        liveRegion.setAttribute('role', 'alert');
         if (error.inputElement?.type === 'radio' && validationPlacement) {
             insertPositional(error.inputGroup, liveRegion, validationPlacement);
         } else {
@@ -451,7 +451,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         this.setErrorHandle(input, error.validatorType, null);
         const errorNode = this.options.onRenderErrorNode(error, this.insertErrorNode, this.options, false);
         if (errorNode) {
-            if (errorNode.parentElement.getAttribute('aria-live') === 'assertive') {
+            if (errorNode.parentElement.getAttribute('role') === 'alert') {
                 errorNode.parentElement.remove();
             }
             errorNode.remove();
@@ -462,7 +462,6 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
             error.inputGroup.classList.remove(this.options.classNames.inputGroup + '--valid');
         } else {
             this.removeErrorForGroup(error.inputGroup, input);
-            error.inputGroup.classList.remove(this.options.classNames.inputGroup + '--error');
         }
     }
 
