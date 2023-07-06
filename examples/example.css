@@ -1,0 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 2rem;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
