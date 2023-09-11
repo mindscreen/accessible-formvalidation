@@ -2,3 +2,5 @@ examples/
 docs/
 .idea/
 .vscode/
+.editorconfig
+.eslintignore
