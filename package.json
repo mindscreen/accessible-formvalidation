@@ -1,6 +1,9 @@
 {
     "name": "@mindscreen/formvalidation",
+    "version": "0.1.0",
     "description": "Provides means for an accessible form validation",
+    "repository": "https://github.com/mindscreen/accessible-formvalidation",
+    "homepage": "https://github.com/mindscreen/accessible-formvalidation#readme",
     "scripts": {
         "compile": "tsc",
         "start": "tsc --watch",

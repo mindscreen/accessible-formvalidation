@@ -2,3 +2,5 @@ node_modules/
 dist/
 examples/*.js
 docs/
+.vscode/
+.idea/
