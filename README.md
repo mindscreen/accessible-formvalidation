@@ -10,19 +10,19 @@ This package implements an accessible form validation.
 ![Screenshot of a form with inline errors and error summary above](docs/screenshot.png)
 
 ## Build the examples
-```
+```bash
 npm install
 npm run examples
 ```
 
 ## Build the docs
-```
+```bash
 npm install
 npm run docs
 ```
 
 ## Build distribution code
-```
+```bash
 npm install
 npm run build
 ```
