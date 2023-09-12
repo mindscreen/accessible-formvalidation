@@ -1,5 +1,7 @@
 # mindscreen Accessible Form Validation
 
+[![npm](https://img.shields.io/npm/v/%40mindscreen%2Fformvalidation)](https://www.npmjs.com/package/@mindscreen/formvalidation)
+
 This package implements an accessible form validation.
 
 ## Core features
