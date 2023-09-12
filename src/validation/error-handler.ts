@@ -214,10 +214,13 @@ const defaultOptions: IErrorHandlerOptions = {
  */
 export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions> {
     private readonly options: IErrorHandlerOptions;
+    private errorIds: string[];
 
     constructor(options: Partial<IErrorHandlerOptions>) {
         this.options = deepMerge(defaultOptions, options) as IErrorHandlerOptions;
+        this.errorIds = [];
         this.getErrorContainer = this.getErrorContainer.bind(this);
+        this.updateAriaDescription = this.updateAriaDescription.bind(this);
         this.getErrorNodeIds = this.getErrorNodeIds.bind(this);
         this.getErrorMessage = this.getErrorMessage.bind(this);
         this.getErrorNodeContainer = this.getErrorNodeContainer.bind(this);
@@ -241,6 +244,31 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
     private getErrorContainer(form: HTMLFormElement) {
         const container = form.querySelector(this.options.selectors.errorContainer);
         return this.options.onRenderErrorList(container as HTMLElement, this.options);
+    }
+
+    /**
+     * Updates or removes the `aria-describedby` attribute on an input, removing previous error descriptions and adding
+     * the given new IDs.
+     * @param element The element to update
+     * @param newIds The IDs that should be added
+     * @private
+     */
+    private updateAriaDescription(element: HTMLElement, newIds: string[]) {
+        if (!element.hasAttribute('aria-describedby') && newIds.length === 0) {
+            return;
+        }
+
+        const currentIds = element.hasAttribute('aria-describedby')
+            ? element.getAttribute('aria-describedby').split(' ').filter(Boolean)
+            : [];
+        const nonErrorIds = currentIds.filter(id => this.errorIds.indexOf(id) < 0);
+        const nextIds = [ ...nonErrorIds, ...newIds ];
+
+        if (nextIds.length === 0) {
+            element.removeAttribute('aria-describedby');
+        } else {
+            element.setAttribute('aria-describedby', nextIds.join(' '));
+        }
     }
 
     /**
@@ -385,16 +413,15 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
      * Returns the IDs of the error-nodes (within an input-group) to then be
      * set as `aria-describedby` on the input element.
      * @param inputGroup The input-group error-nodes are searched for in
-     * @returns The (with whitespace) concatenated IDs
+     * @returns The IDs
      * @private
      */
-    private getErrorNodeIds(inputGroup: InputGroup): string {
+    private getErrorNodeIds(inputGroup: InputGroup): string[] {
         return Array.from(this.getErrorNodeContainer(inputGroup)
             .querySelectorAll('.' + this.options.classNames.errorNode)
         )
             .map(n => n.id)
-            .filter(n => document.getElementById(n) !== null)
-            .join(' ');
+            .filter(n => document.getElementById(n) !== null);
     }
 
     /**
@@ -407,7 +434,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
      */
     private removeErrorForGroup(inputGroup: InputGroup, input: HTMLInputElement) {
         input.removeAttribute('aria-invalid');
-        input.removeAttribute('aria-describedby');
+        this.updateAriaDescription(input, []);
         inputGroup.classList.remove(this.options.classNames.inputGroup + '--valid');
         inputGroup.classList.remove(this.options.classNames.inputGroup + '--error');
     }
@@ -417,7 +444,10 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         Array.from(validationInstance.inputGroups)
             .forEach(g => this.removeErrorForGroup(g, validationInstance.getInput(g)));
         Array.from(validationInstance.form.querySelectorAll('.' + this.options.classNames.errorNode))
-            .forEach(c => c.remove());
+            .forEach(c => {
+                this.errorIds = this.errorIds.filter(id => id !== c.id);
+                c.remove();
+            });
     }
 
     handleSubmit(form: HTMLFormElement, result: boolean): void {
@@ -440,9 +470,10 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         if (errorNode) {
             errorNode.classList.add(this.options.classNames.errorDescription);
             errorNode.innerText = message;
+            this.errorIds.push(errorNode.id);
         }
         input.setAttribute('aria-invalid', 'true');
-        input.setAttribute('aria-describedby', this.getErrorNodeIds(error.inputGroup));
+        this.updateAriaDescription(input, this.getErrorNodeIds(error.inputGroup));
         error.inputGroup.classList.add(this.options.classNames.inputGroup + '--error');
     }
 
@@ -458,7 +489,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
         }
         const errorNodeIds = this.getErrorNodeIds(error.inputGroup);
         if (errorNodeIds.length > 0) {
-            input.setAttribute('aria-describedby', errorNodeIds);
+            this.updateAriaDescription(input, errorNodeIds);
             error.inputGroup.classList.remove(this.options.classNames.inputGroup + '--valid');
         } else {
             this.removeErrorForGroup(error.inputGroup, input);
