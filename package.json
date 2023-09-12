@@ -11,6 +11,7 @@
         "sass": "sass scss/forms.scss:dist/base.css",
         "examples:fromOptions": "esbuild examples/fromOptions.ts --bundle --outfile=examples/fromOptions.js",
         "examples:customValidator": "esbuild examples/customValidator.ts --bundle --outfile=examples/customValidator.js",
+        "examples:nativeValidation": "esbuild examples/nativeValidation.ts --bundle --outfile=examples/nativeValidation.js",
         "examples": "npm run sass && npm-run-all examples:*",
         "build": "npm run sass && npm run compile",
         "docs": "typedoc src/**/*.ts"
