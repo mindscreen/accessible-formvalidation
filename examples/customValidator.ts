@@ -1,7 +1,9 @@
-import { IErrorHandlerOptions } from '../src/validation/error-handler';
-import { IErrorHandlerBaseOptions } from '../src/validation/error-handler.types';
-import { Validation } from '../src/validation/validation';
-import { IValidationInstanceOptions } from '../src/validation/validation-instance';
+import {
+    IErrorHandlerBaseOptions,
+    IErrorHandlerOptions,
+    IValidationInstanceOptions,
+    Validation,
+} from '../src/validation';
 import {
     RequiredValidator,
     ValidatorInterface,

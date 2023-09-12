@@ -1,13 +1,15 @@
-import { IErrorHandlerBaseOptions } from '../src/validation/error-handler.types';
-import { IErrorHandlerOptions } from '../src/validation/error-handler';
-import { IValidationInstanceOptions } from '../src/validation/validation-instance';
+import {
+    IErrorHandlerBaseOptions,
+    IErrorHandlerOptions,
+    IValidationInstanceOptions,
+    Validation,
+} from '../src/validation';
 import {
     EmailValidator,
-    NumberValidator,
     NumberRangeValidator,
+    NumberValidator,
     RequiredValidator,
 } from '../src/validation/validators';
-import { Validation } from '../src/validation/validation';
 
 
 const form = document.querySelector('form');
@@ -23,7 +25,7 @@ form.addEventListener('submit', e => {
 
 // prepare validation instance
 // validation objects can be instantiated for multiple forms with differing
-// optionsm, becoming a "validation instance"
+// options, becoming a "validation instance"
 const validation = new Validation<
         IValidationInstanceOptions,
         // allow options for the selected error handler
