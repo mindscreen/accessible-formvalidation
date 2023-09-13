@@ -5,6 +5,8 @@
     "description": "Provides means for an accessible form validation",
     "repository": "https://github.com/mindscreen/accessible-formvalidation",
     "homepage": "https://github.com/mindscreen/accessible-formvalidation#readme",
+    "main": "dist/main.ts",
+    "types": "src/main.ts",
     "scripts": {
         "compile": "tsc",
         "start": "tsc --watch",
