@@ -60,7 +60,7 @@ const MyNativeValidator = {
 ### Custom Validation
 See [examples/fromOptions.ts](./examples/fromOptions.ts) on how to completely set up your custom validation.
 
-If you encode all translations and configuration in your markup, you can have a look at [src/forms.ts](./src/forms.ts), which provides a basic setup.
+If you encode all translations and configuration in your markup, you can have a look at [src/default-setup.ts](./src/default-setup.ts), which provides a basic setup.
 
 ### Custom Validators
 To allow for custom rules, you can implement custom validators.
