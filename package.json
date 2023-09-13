@@ -1,11 +1,11 @@
 {
     "name": "@mindscreen/formvalidation",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "license": "MIT",
     "description": "Provides means for an accessible form validation",
     "repository": "https://github.com/mindscreen/accessible-formvalidation",
     "homepage": "https://github.com/mindscreen/accessible-formvalidation#readme",
-    "main": "dist/main.ts",
+    "main": "dist/main.js",
     "types": "src/main.ts",
     "scripts": {
         "compile": "tsc",
