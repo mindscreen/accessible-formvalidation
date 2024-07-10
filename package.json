@@ -1,6 +1,6 @@
 {
     "name": "@mindscreen/formvalidation",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "license": "MIT",
     "description": "Provides means for an accessible form validation",
     "repository": "https://github.com/mindscreen/accessible-formvalidation",
