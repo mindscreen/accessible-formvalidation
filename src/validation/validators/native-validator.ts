@@ -11,9 +11,7 @@ export const NativeValidator: ValidatorInterface<NativeValidationResult> = {
     getIdentifier: () => 'native',
     isApplicable: input => AbstractValidator.isApplicable(input)
         && input !== null,
-    validate: (
-        input: HTMLInputElement
-    ): (
+    validate: (input): (
         onError: ValidationCallback<NativeValidationResult>,
         onSuccess: ValidationCallback<NativeValidationResult>
     ) => void => {
@@ -28,5 +26,4 @@ export const NativeValidator: ValidatorInterface<NativeValidationResult> = {
     getValidationMessage: (label: string, args: NativeValidationResult): string | null => {
         return `${label}: ${args.message}`;
     },
-
 };

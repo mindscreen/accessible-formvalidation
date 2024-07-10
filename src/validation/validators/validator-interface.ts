@@ -1,4 +1,4 @@
-import { ValidationInstance } from '../validation-instance';
+import { InputElement, ValidationInstance } from '../validation-instance';
 import { IErrorTranslations } from '../error-handler.types';
 
 export type ValidationCallback<A> = (args?: A) => void;
@@ -31,7 +31,7 @@ export interface ValidatorInterface<A = unknown> {
      *      additional data.
      */
     isApplicable: (
-        input: HTMLInputElement,
+        input: InputElement,
         validationInstance: ValidationInstance
     ) => boolean;
     /**
@@ -42,7 +42,7 @@ export interface ValidatorInterface<A = unknown> {
      * @param validationInstance The current validation-instance
      */
     validate: (
-        input: HTMLInputElement,
+        input: InputElement,
         validationInstance: ValidationInstance
     ) => (
         onError: ValidationCallback<A>,

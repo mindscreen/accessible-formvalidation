@@ -7,6 +7,8 @@ import { ValidatorInterface } from './validators';
  */
 export type InputGroup = HTMLElement;
 
+export type InputElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
 export type ValidatorConfiguration = {
     /**
      * The validators that are available and should be considered for validation
@@ -67,7 +69,7 @@ export interface IErrorInfo {
     /**
      * The actual input that was validated, if any
      */
-    inputElement?: HTMLInputElement;
+    inputElement?: InputElement;
     /**
      * The identifier of the validator that raised this validation error
      */
@@ -134,14 +136,14 @@ export class ValidationInstance {
     get inputGroups(): InputGroup[] {
         return (Array.from(this._form.querySelectorAll(this._options.groupSelector)) as HTMLElement[]).filter(group => this.getInput(group) !== null);
     }
-    isMultiInputElement(input: HTMLInputElement | null): null | boolean {
+    isMultiInputElement(input: InputElement | null): null | boolean {
         if (!input) {
             return null;
         }
         const sameNameInputs = input.form.querySelectorAll(`[name="${input.name}"]:not([type="hidden"])`);
         return sameNameInputs.length > 1;
     }
-    getInput(inputGroup: InputGroup): HTMLInputElement {
+    getInput(inputGroup: InputGroup): InputElement {
         let input = inputGroup.querySelector(this._options.inputSelector);
         if (input && input.getAttribute('type') === 'hidden') {
             const sibling = input.nextElementSibling;
@@ -154,9 +156,9 @@ export class ValidationInstance {
                 return null;
             }
         }
-        return input as HTMLInputElement;
+        return input as InputElement;
     }
-    getLabel(inputGroup: InputGroup, input?: HTMLInputElement): string {
+    getLabel(inputGroup: InputGroup, input?: InputElement): string {
         let label: HTMLElement = inputGroup.querySelector('label');
         let validationLabel = label.getAttribute('data-validation-label')
             || inputGroup.getAttribute('data-validation-label');
@@ -185,7 +187,7 @@ export class ValidationInstance {
         }
         return validationLabel;
     }
-    static getIdentifier(input: HTMLInputElement): string {
+    static getIdentifier(input: InputElement): string {
         let id = input.id;
         if (input.getAttribute('type') === 'radio') {
             id = id.split('-').slice(0, -1).join('-');

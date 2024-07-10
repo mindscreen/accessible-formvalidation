@@ -1,5 +1,5 @@
 import { ErrorHandlerInterface, IErrorHandlerBaseOptions } from './error-handler.types';
-import { IErrorInfo, InputGroup, ValidationInstance } from './validation-instance';
+import { IErrorInfo, InputElement, InputGroup, ValidationInstance } from './validation-instance';
 import { deepMerge, insertPositional, replaceAll, setAttributes, wrapContents } from '../util';
 import { ValidatorInterface } from './validators';
 
@@ -283,7 +283,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
      * @returns The list-item to be inserted into the error-list
      * @private
      */
-    private setErrorHandle(input: HTMLInputElement, validatorType: string, errorMessage: string | null): HTMLLIElement {
+    private setErrorHandle(input: InputElement, validatorType: string, errorMessage: string | null): HTMLLIElement {
         const elId = ValidationInstance.getIdentifier(input);
         const errorId = `error-list-${elId}_${validatorType}`;
         let a = document.getElementById(errorId);
@@ -337,7 +337,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
      * @param input The input the error handle relates to
      * @private
      */
-    private insertErrorHandle(container: HTMLElement, errorHandle: HTMLElement, input: HTMLInputElement): void {
+    private insertErrorHandle(container: HTMLElement, errorHandle: HTMLElement, input: InputElement): void {
         if (!errorHandle) {
             return;
         }
@@ -432,7 +432,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
      * @param input The input element
      * @private
      */
-    private removeErrorForGroup(inputGroup: InputGroup, input: HTMLInputElement) {
+    private removeErrorForGroup(inputGroup: InputGroup, input: InputElement) {
         input.removeAttribute('aria-invalid');
         this.updateAriaDescription(input, []);
         inputGroup.classList.remove(this.options.classNames.inputGroup + '--valid');

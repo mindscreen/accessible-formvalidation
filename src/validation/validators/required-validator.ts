@@ -10,11 +10,10 @@ export const RequiredValidator: ValidatorInterface = {
         && input.hasAttribute('required'),
     validate: input =>
         (onError, onSuccess) => {
-            if (input.tagName.toLowerCase() === 'textarea' && input.value.trim().length === 0) {
+            if (input instanceof HTMLTextAreaElement && input.value.trim().length === 0) {
                 onError();
                 return;
-            }
-            if (input.tagName.toLowerCase() === 'input') {
+            } else if (input instanceof HTMLInputElement) {
                 switch (input.type) {
                     case 'text':
                     case 'number':
@@ -41,6 +40,9 @@ export const RequiredValidator: ValidatorInterface = {
                         break;
                     }
                 }
+            } else if (input instanceof HTMLSelectElement && input.validity.valueMissing) {
+                onError();
+                return;
             }
             onSuccess();
         },

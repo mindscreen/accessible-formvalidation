@@ -6,7 +6,7 @@ import { AbstractValidator } from './abstract-validator';
  */
 export const EmailValidator: ValidatorInterface = {
     getIdentifier: () => 'email',
-    isApplicable: (input: HTMLInputElement) => AbstractValidator.isApplicable(input)
+    isApplicable: input => AbstractValidator.isApplicable(input)
         && input.tagName.toLowerCase() === 'input'
         && input.getAttribute('type') === 'email',
     validate: input =>

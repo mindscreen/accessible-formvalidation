@@ -14,8 +14,8 @@ type StringLengthValidationResult = {
 export const StringLengthValidator: ValidatorInterface<StringLengthValidationResult> = {
     getIdentifier: () => 'string-length',
     isApplicable: input => AbstractValidator.isApplicable(input)
-        && (input.tagName.toLowerCase() === 'textarea'
-            || (input.tagName.toLowerCase() === 'input'
+        && (input instanceof HTMLTextAreaElement
+            || (input instanceof HTMLInputElement
                 && input.getAttribute('type') !== 'checkbox'
                 && input.getAttribute('type') !== 'radio'
             )
