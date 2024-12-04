@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +8,33 @@
     <link rel="stylesheet" href="../dist/base.css">
     <link rel="stylesheet" href="./example.css">
 </head>
-<body>
-    <form>
-        <div class="form-error-container"></div>
-        
-        <div class="form-element__container">
-            <label for="inpSum" class="form-element__label">Digit sum</label>
-            <div class="form-element">
-                <input
-                    name="sum"
-                    id="inpSum"
-                    class="form-control"
-                    data-sum="15"
-                    aria-describedby="descSum"
-                >
-            </div>
-            <div id="descSum" class="form-element__description">Your input should include digits with sum 15</div>
-        </div>
 
-        <button type="submit">Submit</button>
-    </form>
+<body>
+    <main>
+        <h1>Example form with custom validator</h1>
+
+        <form>
+            <div class="form-error-container"></div>
+            <div class="form-element__container">
+                <label for="inpSum"
+                       class="form-element__label">Digit sum</label>
+                <div class="form-element">
+                    <input name="sum"
+                           id="inpSum"
+                           class="form-control"
+                           data-sum="15"
+                           aria-describedby="descSum">
+                </div>
+                <div id="descSum"
+                     class="form-element__description">Your input should include
+                    digits with sum 15</div>
+                </div>
+
+            <button type="submit">Submit</button>
+            </form>
+    </main>
 
     <script src="./customValidator.js"></script>
 </body>
+
 </html>

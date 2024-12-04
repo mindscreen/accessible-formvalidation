@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,58 @@
     <link rel="stylesheet" href="../dist/base.css">
     <link rel="stylesheet" href="./example.css">
 </head>
-<body>
-    <form>
-        <div class="form-error-container"></div>
-        
-        <div class="form-element__container">
-            <label for="inpName" class="form-element__label">Name</label>
-            <div class="form-element">
-                <input
-                    name="name"
-                    type="text"
-                    id="inpName"
-                    class="form-control"
-                    autocomplete="name"
-                    required
-                >
-            </div>
-        </div>
 
+<body>
+    <main>
+        <h1>Example form from options</h1>
+
+        <form>
+            <div class="form-error-container"></div>
+        
+            <div class="form-element__container">
+                <label for="inpName"
+                       class="form-element__label">Name</label>
+                <div class="form-element">
+                    <input name="name"
+                           type="text"
+                           id="inpName"
+                           class="form-control"
+                           autocomplete="name"
+                           required>
+                </div>
+                </div>
+
+            <div class="form-element__container">
+                <label for="inpEmail"
+                       class="form-element__label">Email</label>
+                <div class="form-element">
+                    <input name="email"
+                           type="email"
+                           id="inpEmail"
+                           class="form-control"
+                           autocomplete="email"
+                           required>
+                </div>
+            </div>
+            
+            <div class="form-element__container">
+                <label for="inpNumber"
+                       class="form-element__label">Number</label>
+                <div class="form-element">
+                    <input name="rating"
+                           type="number"
+                           id="inpNumber"
+                           min="1"
+                           max="10"
+                           class="form-control"
+                           aria-describedby="descNumber">
+                </div>
+                <div id="descNumber"
+                     class="form-element__description">Please insert a number between 1 and
+                    10
+                </div>
+            </div>
+            
             <div class="form-element__container">
                 <label for="inpSelect"
                        class="form-element__label">Select an option</label>
@@ -140,9 +175,10 @@
                 </div>
             </fieldset>
 
-        <button type="submit">Submit</button>
-    </form>
-
+            <button type="submit">Submit</button>
+            </form>
+    </main>
     <script src="./fromOptions.js"></script>
 </body>
+
 </html>
