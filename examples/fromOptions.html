@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,57 +8,177 @@
     <link rel="stylesheet" href="../dist/base.css">
     <link rel="stylesheet" href="./example.css">
 </head>
+
 <body>
-    <form>
-        <div class="form-error-container"></div>
+    <main>
+        <h1>Example form from options</h1>
+
+        <form>
+            <div class="form-error-container"></div>
         
-        <div class="form-element__container">
-            <label for="inpName" class="form-element__label">Name</label>
-            <div class="form-element">
-                <input
-                    name="name"
-                    type="text"
-                    id="inpName"
-                    class="form-control"
-                    autocomplete="name"
-                    required
-                >
+            <div class="form-element__container">
+                <label for="inpName"
+                       class="form-element__label">Name</label>
+                <div class="form-element">
+                    <input name="name"
+                           type="text"
+                           id="inpName"
+                           class="form-control"
+                           autocomplete="name"
+                           required>
+                </div>
+                </div>
+
+            <div class="form-element__container">
+                <label for="inpEmail"
+                       class="form-element__label">Email</label>
+                <div class="form-element">
+                    <input name="email"
+                           type="email"
+                           id="inpEmail"
+                           class="form-control"
+                           autocomplete="email"
+                           required>
+                </div>
             </div>
-        </div>
-
-        <div class="form-element__container">
-            <label for="inpEmail" class="form-element__label">Email</label>
-            <div class="form-element">
-                <input
-                    name="email"
-                    type="email"
-                    id="inpEmail"
-                    class="form-control"
-                    autocomplete="email"
-                    required
-                >
+            
+            <div class="form-element__container">
+                <label for="inpNumber"
+                       class="form-element__label">Number</label>
+                <div class="form-element">
+                    <input name="rating"
+                           type="number"
+                           id="inpNumber"
+                           min="1"
+                           max="10"
+                           class="form-control"
+                           aria-describedby="descNumber">
+                </div>
+                <div id="descNumber"
+                     class="form-element__description">Please insert a number between 1 and
+                    10
+                </div>
             </div>
-        </div>
-
-        <div class="form-element__container">
-            <label for="inpNumber" class="form-element__label">Number</label>
-            <div class="form-element">
-                <input
-                    name="rating"
-                    type="number"
-                    id="inpNumber"
-                    min="1"
-                    max="10"
-                    class="form-control"
-                    aria-describedby="descNumber"
-                >
+            
+            <div class="form-element__container">
+                <label for="inpSelect"
+                       class="form-element__label">Select an option</label>
+                <div class="form-element">
+                    <select name="options"
+                            id="inpSelect"
+                            required>
+                        <option selected
+                                value="">Please select an option</option>
+                        <option value="apple">Apple</option>
+                        <option value="pear">Pear</option>
+                        <option value="banana">Banana</option>
+                    </select>
+                </div>
             </div>
-            <div id="descNumber" class="form-element__description">Please insert a number between 1 and 10</div>
-        </div>
 
-        <button type="submit">Submit</button>
-    </form>
+            <fieldset class="form-element__fieldset"
+                        aria-describedby="radio-hint"
+                        data-validation-placement>
+                <legend class="form-element__legend">Radio buttons</legend>
+                <p id="radio-hint"
+                    class="govuk-hint">
+                    Choose one option
+                </p>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="radio"
+                                name="radiogroup"
+                                id="inpRadio-1"
+                                value="option-one"
+                                class="form-control"
+                                required>
+                        <label for="inpRadio-1"
+                                class="form-element__label">Option one</label>
+                    </div>
+                </div>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="radio"
+                                name="radiogroup"
+                                id="inpRadio-2"
+                                value="option-two"
+                                class="form-control">
+                        <label for="inpRadio-2"
+                                class="form-element__label">Option two</label>
+                    </div>
+                </div>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="radio"
+                                name="radiogroup"
+                                id="inpRadio-3"
+                                value="option-three"
+                                class="form-control">
+                        <label for="inpRadio-3"
+                                class="form-element__label">Option three</label>
+                    </div>
+                </div>
+            </fieldset>
 
+            <div class="form-element__container">
+                <div class="form-element">
+                    <input type="checkbox"
+                            name="checkboxSingle"
+                            id="inpCheckboxSingle"
+                            class="form-control"
+                            required>
+                    <label for="inpCheckboxSingle"
+                            class="form-element__label">Single Checkbox option</label>
+                </div>
+            </div>
+
+            <fieldset class="form-element__fieldset"
+                        aria-describedby="checkbox-hint"
+                        data-validation-placement>
+                <legend class="form-element__legend">Multiple Checkboxes</legend>
+                <p id="checkbox-hint"
+                    class="govuk-hint">
+                    Choose at least one option. Can be multiple.
+                </p>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="checkbox"
+                                name="checkboxgroup"
+                                id="inpCheckboxMultiple-1"
+                                value="option-one"
+                                class="form-control">
+                        <label for="inpCheckboxMultiple-1"
+                                class="form-element__label">Option one</label>
+                    </div>
+                </div>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="checkbox"
+                                name="checkboxgroup"
+                                id="inpCheckboxMultiple-2"
+                                value="option-two"
+                                class="form-control">
+                        <label for="inpCheckboxMultiple-2"
+                                class="form-element__label">Option two</label>
+                    </div>
+                </div>
+                <div class="form-element__container">
+                    <div class="form-element">
+                        <input type="checkbox"
+                                name="checkboxgroup"
+                                id="inpCheckboxMultiple-3"
+                                value="option-three"
+                                class="form-control">
+                        <label for="inpCheckboxMultiple-3"
+                                class="form-element__label">Option three</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+            </form>
+    </main>
     <script src="./fromOptions.js"></script>
 </body>
+
 </html>
