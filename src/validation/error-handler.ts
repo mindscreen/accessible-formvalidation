@@ -378,14 +378,13 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
     private insertErrorNode(error: IErrorInfo, node: HTMLElement) {
         const validationPlacement = error.inputGroup
             .getAttribute(this.options.selectors.validationPlacementAttribute);
-        const liveRegion = document.createElement('div');
-        liveRegion.setAttribute('role', 'alert');
+        const errorNodeWrapper = document.createElement('div');
         if (error.inputElement?.type === 'radio' && validationPlacement) {
-            insertPositional(error.inputGroup, liveRegion, validationPlacement);
+            insertPositional(error.inputGroup, errorNodeWrapper, validationPlacement);
         } else {
-            insertPositional(error.inputGroup, liveRegion, 'before .form-text, in this');
+            insertPositional(error.inputGroup, errorNodeWrapper, 'before .form-text, in this');
         }
-        liveRegion.append(node);
+        errorNodeWrapper.append(node);
     }
 
     /**
@@ -456,6 +455,7 @@ export class ErrorHandler implements ErrorHandlerInterface<IErrorHandlerOptions>
             errorContainer.classList.remove(this.options.classNames.errorListContainer + '--form-submitted');
         } else {
             errorContainer.classList.add(this.options.classNames.errorListContainer + '--form-submitted');
+            errorContainer.setAttribute('role', 'alert');
             errorContainer.querySelector('h2').focus();
         }
     }
