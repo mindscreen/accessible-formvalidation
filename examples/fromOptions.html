@@ -95,25 +95,23 @@
                         <label for="inpRadio-1"
                                 class="form-element__label">Option one</label>
                     </div>
-                </div>
-                <div class="form-element__container">
                     <div class="form-element">
                         <input type="radio"
                                 name="radiogroup"
                                 id="inpRadio-2"
                                 value="option-two"
-                                class="form-control">
+                                class="form-control"
+                                required>
                         <label for="inpRadio-2"
                                 class="form-element__label">Option two</label>
                     </div>
-                </div>
-                <div class="form-element__container">
                     <div class="form-element">
                         <input type="radio"
                                 name="radiogroup"
                                 id="inpRadio-3"
                                 value="option-three"
-                                class="form-control">
+                                class="form-control"
+                                required>
                         <label for="inpRadio-3"
                                 class="form-element__label">Option three</label>
                     </div>
@@ -133,41 +131,40 @@
             </div>
 
             <fieldset class="form-element__fieldset"
-                        aria-describedby="checkbox-hint"
+                        aria-describedby="multiple-checkboxes-hint"
                         data-validation-placement>
                 <legend class="form-element__legend">Multiple Checkboxes</legend>
-                <p id="checkbox-hint"
+                <div id="multiple-checkboxes-hint"
                     class="govuk-hint">
                     Choose at least one option. Can be multiple.
-                </p>
+                </div>
                 <div class="form-element__container">
                     <div class="form-element">
                         <input type="checkbox"
                                 name="checkboxgroup"
                                 id="inpCheckboxMultiple-1"
                                 value="option-one"
+                                required
                                 class="form-control">
                         <label for="inpCheckboxMultiple-1"
                                 class="form-element__label">Option one</label>
                     </div>
-                </div>
-                <div class="form-element__container">
                     <div class="form-element">
                         <input type="checkbox"
                                 name="checkboxgroup"
                                 id="inpCheckboxMultiple-2"
                                 value="option-two"
+                                required
                                 class="form-control">
                         <label for="inpCheckboxMultiple-2"
                                 class="form-element__label">Option two</label>
                     </div>
-                </div>
-                <div class="form-element__container">
                     <div class="form-element">
                         <input type="checkbox"
                                 name="checkboxgroup"
                                 id="inpCheckboxMultiple-3"
                                 value="option-three"
+                                required
                                 class="form-control">
                         <label for="inpCheckboxMultiple-3"
                                 class="form-element__label">Option three</label>
