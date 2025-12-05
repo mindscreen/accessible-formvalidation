@@ -15,15 +15,6 @@ export const RequiredValidator: ValidatorInterface = {
                 return;
             } else if (input instanceof HTMLInputElement) {
                 switch (input.type) {
-                    case 'text':
-                    case 'number':
-                    case 'email':
-                    case 'tel':
-                        if (!input.value.trim()) {
-                            onError();
-                            return;
-                        }
-                        break;
                     case 'checkbox':
                         if (!input.checked) {
                             onError();
@@ -39,6 +30,12 @@ export const RequiredValidator: ValidatorInterface = {
                         }
                         break;
                     }
+                    default:
+                        if (!input.value.trim()) {
+                            onError();
+                            return;
+                        }
+                        break;
                 }
             } else if (input instanceof HTMLSelectElement && input.validity.valueMissing) {
                 onError();
