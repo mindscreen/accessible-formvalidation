@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example form</title>
+    <link rel="stylesheet" href="../dist/base.css">
+    <link rel="stylesheet" href="./example.css">
+</head>
+
+<body>
+    <main>
+        <h1>Example form skipping validation</h1>
+        <form>
+            <div class="form-error-container"></div>
+
+            <div class="form-element__container">
+                <label for="inpName"
+                       class="form-element__label">Name (baseline)</label>
+                <div class="form-element">
+                    <input name="name"
+                           id="inpName"
+                           class="form-control"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-element__container">
+                <label for="inpName2"
+                       class="form-element__label">Name (skipped on input)</label>
+                <div class="form-element">
+                    <input name="name"
+                           id="inpName2"
+                           class="form-control"
+                           data-novalidate
+                           required>
+                </div>
+            </div>
+
+            <div class="form-element__container" data-novalidate>
+                <label for="inpName3"
+                       class="form-element__label">Name (skipped on group)</label>
+                <div class="form-element">
+                    <input name="name"
+                           id="inpName3"
+                           class="form-control"
+                           required>
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+            </form>
+    </main>
+
+    <script src="./nativeValidation.js"></script>
+</body>
+
+</html>
