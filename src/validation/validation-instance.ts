@@ -43,6 +43,10 @@ export interface IValidationInstanceOptions {
      */
     checkboxLabelSelector?: string;
     /**
+     * A query-selector to skip validation for input elements or input groups
+     */
+    ignoreInputValidationSelector?: string;
+    /**
      * Called if there was a validation-error while validating a single input
      */
     onValidationError?: ValidationResultCallback;
@@ -87,6 +91,7 @@ export const defaultOptions: Required<IValidationInstanceOptions> = {
     groupSelector: '.form-element__container',
     inputSelector: '[name]',
     checkboxLabelSelector: '.form-element__label--checkbox',
+    ignoreInputValidationSelector: '[data-novalidate]',
     onValidationError: noop,
     onValidationSuccess: noop,
     onClearValidationErrors: noop,
@@ -200,8 +205,11 @@ export class ValidationInstance {
     }
     private _validate(inputGroup: InputGroup): () => boolean {
         return () => {
+            if (inputGroup.matches(this._options.ignoreInputValidationSelector)) {
+                return true;
+            }
             const input = this.getInput(inputGroup);
-            if (!input || input.hidden) {
+            if (!input || input.hidden || input.matches(this._options.ignoreInputValidationSelector)) {
                 return true;
             }
             const inputLabel = this.getLabel(inputGroup, input);
